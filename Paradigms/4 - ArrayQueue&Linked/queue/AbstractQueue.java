@@ -27,8 +27,8 @@ public abstract class AbstractQueue implements Queue {
     }
 
     public Object dequeue() {
-        assert size > 0 : "size == 0";
-        Object el = dequeueFull();
+        Object el = element();
+        dequeueFull();
         --size;
         return el;
     }
@@ -42,11 +42,19 @@ public abstract class AbstractQueue implements Queue {
         return newElements(size);
     }
 
-    protected abstract Object[] newElements(int capacity);
+    protected Object[] newElements(int capacity) {
+        Object[] result = new Object[capacity];
+        for (int i = 0; i < size; ++i) {
+            result[i] = element();
+            enqueue(dequeue());
+
+        }
+        return result;
+    }
 
     protected abstract void clearFull();
 
-    protected abstract Object dequeueFull();
+    protected abstract void dequeueFull();
 
     protected abstract Object getElements();
 

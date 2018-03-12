@@ -5,7 +5,7 @@ package queue;
  */
 
 // inv: size >= 0
-// && el[i] != null for i = head..tail
+// && el[i] != null for i = 0..size-1
 public interface Queue {
     //immutable = { elements[i] == elements'[i] for i = head .. tail && head == head' && tail == tail' && size == size'}
     //immutable(l, r) = { elements[i] == elements[i] for i = l .. r}
