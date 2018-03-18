@@ -1,5 +1,9 @@
 package expression;
 
+/**
+ * @author Nikita Kochetkov M3134
+ */
+
 public class Divide extends AbstractOperation {
     Divide(Example leftArgument, Example rightArgument) {
         super(leftArgument, rightArgument);

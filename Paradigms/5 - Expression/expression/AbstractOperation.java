@@ -1,5 +1,9 @@
 package expression;
 
+/**
+ * @author Nikita Kochetkov M3134
+ */
+
 public abstract class AbstractOperation implements Example{
     Example leftArgument, rightArgument;
 

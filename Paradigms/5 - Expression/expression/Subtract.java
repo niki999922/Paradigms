@@ -1,5 +1,9 @@
 package expression;
 
+/**
+ * @author Nikita Kochetkov M3134
+ */
+
 public class Subtract extends AbstractOperation{
     public Subtract(Example leftArgument, Example rightArgument) {
         super(leftArgument, rightArgument);

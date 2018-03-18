@@ -1,5 +1,9 @@
 package expression;
 
+/**
+ * @author Nikita Kochetkov M3134
+ */
+
 public class Const implements Example {
     private int value_int;
     private double value_double;
@@ -10,6 +14,7 @@ public class Const implements Example {
     }
 
     Const(double value) {
+        this.value_double = value;
         this.value_double = value;
     }
 

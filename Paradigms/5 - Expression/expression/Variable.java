@@ -1,5 +1,9 @@
 package expression;
 
+/**
+ * @author Nikita Kochetkov M3134
+ */
+
 public class Variable implements Example {
     private String name;
 
