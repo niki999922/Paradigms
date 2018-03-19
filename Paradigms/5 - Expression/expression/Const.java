@@ -5,24 +5,21 @@ package expression;
  */
 
 public class Const implements Example {
-    private int value_int;
-    private double value_double;
+    private double var;
 
     Const(int value) {
-        this.value_int = value;
-        this.value_double = value;
+        this.var = value;
     }
 
     Const(double value) {
-        this.value_double = value;
-        this.value_double = value;
+        this.var = value;
     }
 
     public double evaluate(double value) {
-        return this.value_double;
+        return this.var;
     }
 
     public int evaluate(int value) {
-        return this.value_int;
+        return (int) this.var;
     }
 }

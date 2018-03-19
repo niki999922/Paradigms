@@ -4,7 +4,7 @@ package expression;
  * @author Nikita Kochetkov M3134
  */
 
-public abstract class AbstractOperation implements Example{
+public abstract class AbstractOperation implements Example {
     Example leftArgument, rightArgument;
 
     AbstractOperation(Example leftArgument, Example rightArgument) {
@@ -13,13 +13,14 @@ public abstract class AbstractOperation implements Example{
     }
 
     public int evaluate(int value) {
-        return calc(value);
+        return calc(leftArgument.evaluate(value), rightArgument.evaluate(value));
     }
 
     public double evaluate(double value) {
-        return calc(value);
+        return calc(leftArgument.evaluate(value), rightArgument.evaluate(value));
     }
 
-    protected abstract int calc(int value);
-    protected abstract double calc(double value);
+    protected abstract int calc(int left, int right);
+
+    protected abstract double calc(double left, double right);
 }

@@ -14,7 +14,7 @@ public class Main {
                 new Const(3)
         ).evaluate(5));
         if (args.length == 0) {
-            System.out.println("Arguments weren't found.");
+            System.out.println("No arguments found.");
             return;
         }
         try {
@@ -31,7 +31,7 @@ public class Main {
                     ).evaluate(value)
             );
         } catch (NumberFormatException e) {
-            System.out.println("Invalid input error");
+            System.out.println("Invalid input found");
         }
     }
 }

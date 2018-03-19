@@ -9,11 +9,11 @@ public class Divide extends AbstractOperation {
         super(leftArgument, rightArgument);
     }
 
-    protected double calc(double value) {
-        return leftArgument.evaluate(value) / rightArgument.evaluate(value);
+    protected double calc(double left,double right) {
+        return left / right;
     }
 
-    protected int calc(int value) {
-        return leftArgument.evaluate(value) / rightArgument.evaluate(value);
+    protected int calc(int left,int right) {
+        return left / right;
     }
 }
