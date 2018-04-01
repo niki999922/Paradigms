@@ -4,14 +4,14 @@ package expression;
  * @author Nikita Kochetkov M3134
  */
 
-public class Const implements Example {
+public class Const implements CommonExpression {
     private double var;
 
-    Const(int value) {
+    public Const(int value) {
         this.var = value;
     }
 
-    Const(double value) {
+    public Const(double value) {
         this.var = value;
     }
 
@@ -20,6 +20,10 @@ public class Const implements Example {
     }
 
     public int evaluate(int value) {
+        return (int) this.var;
+    }
+
+    public int evaluate(int x, int y, int z) {
         return (int) this.var;
     }
 }

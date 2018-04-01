@@ -4,8 +4,8 @@ package expression;
  * @author Nikita Kochetkov M3134
  */
 
-public class Divide extends AbstractOperation {
-    Divide(Example leftArgument, Example rightArgument) {
+public class Divide extends AbstractMultyOperation {
+    public Divide(CommonExpression leftArgument, CommonExpression rightArgument) {
         super(leftArgument, rightArgument);
     }
 

@@ -4,8 +4,8 @@ package expression;
  * @author Nikita Kochetkov M3134
  */
 
-public class Subtract extends AbstractOperation{
-    public Subtract(Example leftArgument, Example rightArgument) {
+public class Subtract extends AbstractMultyOperation {
+    public Subtract(CommonExpression leftArgument, CommonExpression rightArgument) {
         super(leftArgument, rightArgument);
     }
     protected int calc(int left,int right) {
