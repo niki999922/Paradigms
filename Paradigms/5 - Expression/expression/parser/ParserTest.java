@@ -43,7 +43,7 @@ public class ParserTest extends BaseTest {
         ));
 
         tests = list(
-                //op("10", (x, y, z) -> 10L),
+                op("10", (x, y, z) -> 10L),
                 op("x", (x, y, z) -> x),
                 op("y", (x, y, z) -> y),
                 op("z", (x, y, z) -> z),

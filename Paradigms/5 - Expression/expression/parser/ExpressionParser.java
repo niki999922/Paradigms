@@ -19,7 +19,7 @@ public class ExpressionParser implements Parser {
 
     private enum Token {
         VAR, NUMBER, PLUS, MINUS,
-        MUL, DIV, LB, RB, AND, XOR, OR, NOT, COUNT
+        MUL, DIV, LB, RB, AND, XOR, OR, NOT, COUNT, LOG10, POW10, POW, LOG
     }
 
     private char getChar() {
@@ -30,11 +30,12 @@ public class ExpressionParser implements Parser {
     }
 
     private void getToken() {
-        while (Character.isWhitespace(getChar())) {}
+        while (Character.isWhitespace(getChar())) {
+        }
         pos--;
         char ch = getChar();
+        StringBuilder str = new StringBuilder();
         if (Character.isDigit(ch)) {
-            StringBuilder str = new StringBuilder();
             str.append(ch);
             while (Character.isDigit(ch = getChar())) {
                 str.append(ch);
@@ -56,10 +57,22 @@ public class ExpressionParser implements Parser {
                     inTime = Token.PLUS;
                     break;
                 case '*':
-                    inTime = Token.MUL;
+                    str.append(ch);
+                    while ((ch = getChar()) == '*') {
+                        str.append(ch);
+                    }
+                    pos--;
+                    if (str.toString().equals("*")) inTime = Token.MUL;
+                    if (str.toString().equals("**")) inTime = Token.POW;
                     break;
                 case '/':
-                    inTime = Token.DIV;
+                    str.append(ch);
+                    while ((ch = getChar()) == '/') {
+                        str.append(ch);
+                    }
+                    pos--;
+                    if (str.toString().equals("/")) inTime = Token.DIV;
+                    if (str.toString().equals("//")) inTime = Token.LOG;
                     break;
                 case '(':
                     inTime = Token.LB;
@@ -80,13 +93,22 @@ public class ExpressionParser implements Parser {
                     inTime = Token.NOT;
                     break;
                 case 'c':
-                    StringBuilder str = new StringBuilder();
                     str.append(ch);
-                    while (ch != 'E' && Character.isLetter(ch = getChar())) {
+                    pos += 4;
+                    inTime = Token.COUNT;
+                    break;
+                case 'l':
+                    str.append(ch);
+                    pos += 4;
+                    inTime = Token.LOG10;
+                    break;
+                case 'p':
+                    str.append(ch);
+                    while (!Character.isWhitespace(ch = getChar())) {
                         str.append(ch);
                     }
                     pos--;
-                    inTime = Token.COUNT;
+                    inTime = Token.POW10;
                     break;
                 case 'x':
                 case 'y':
@@ -114,12 +136,18 @@ public class ExpressionParser implements Parser {
             case MINUS:
                 ans = new Subtract(new Const(0), primitive());
                 if (overflow) {
-                        ans = new Const(-2147483648);
+                    ans = new Const(-2147483648);
                 }
                 overflow = false;
                 break;
             case NOT:
                 ans = new Not(primitive());
+                break;
+            case LOG10:
+                ans = new Log10(primitive());
+                break;
+            case POW10:
+                ans = new Pow10(primitive());
                 break;
             case COUNT:
                 ans = new Count(primitive());
@@ -132,15 +160,31 @@ public class ExpressionParser implements Parser {
         return ans;
     }
 
-    private CommonExpression divMul() {
+    private CommonExpression hightPriority() {
         CommonExpression newCur = primitive();
         while (true) {
             switch (inTime) {
+                case POW:
+                    newCur = new Pow(newCur, primitive());
+                    break;
+                case LOG:
+                    newCur = new Log(newCur, primitive());
+                    break;
+                default:
+                    return newCur;
+            }
+        }
+    }
+
+    private CommonExpression divMul() {
+        CommonExpression newCur = hightPriority();
+        while (true) {
+            switch (inTime) {
                 case DIV:
-                    newCur = new Divide(newCur, primitive());
+                    newCur = new Divide(newCur, hightPriority());
                     break;
                 case MUL:
-                    newCur = new Multiply(newCur, primitive());
+                    newCur = new Multiply(newCur, hightPriority());
                     break;
                 default:
                     return newCur;
