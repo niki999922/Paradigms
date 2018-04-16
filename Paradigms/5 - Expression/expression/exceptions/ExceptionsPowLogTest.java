@@ -54,7 +54,7 @@ public class ExceptionsPowLogTest extends ExceptionsTest {
         return (long) result;
     }
 
-    public static void main(final String[] args) {
+    public static void main(final String[] args) throws EvaluatingException {
         new ExceptionsPowLogTest().run();
     }
 }

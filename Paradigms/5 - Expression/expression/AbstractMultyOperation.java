@@ -1,18 +1,20 @@
 package expression;
 
+import expression.exceptions.EvaluatingException;
+
 /**
  * @author Nikita Kochetkov M3134
  */
 
-public abstract class AbstractMultyOperation extends AbstractOperation {
+public abstract class AbstractMultyOperation implements CommonExpression {
     CommonExpression leftArgument, rightArgument;
 
-    AbstractMultyOperation(CommonExpression leftArgument, CommonExpression rightArgument) {
+    protected AbstractMultyOperation(CommonExpression leftArgument, CommonExpression rightArgument) {
         this.leftArgument = leftArgument;
         this.rightArgument = rightArgument;
     }
 
-    public int evaluate(int x, int y, int z){
+    public int evaluate(int x, int y, int z) throws EvaluatingException {
         return calc(leftArgument.evaluate(x,y,z),rightArgument.evaluate(x,y,z));
     }
 

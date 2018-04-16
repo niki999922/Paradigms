@@ -1,6 +1,8 @@
 package expression;
 
-public abstract class AbstractUnaryOperation extends AbstractOperation {
+import expression.exceptions.EvaluatingException;
+
+public abstract class AbstractUnaryOperation implements CommonExpression {
     CommonExpression argument;
 
     public AbstractUnaryOperation(CommonExpression argument) {
@@ -20,7 +22,7 @@ public abstract class AbstractUnaryOperation extends AbstractOperation {
         return calc(argument.evaluate(x));
     }
 
-    public int evaluate(int x, int y, int z) {
+    public int evaluate(int x, int y, int z) throws EvaluatingException {
         return calc(argument.evaluate(x, y, z));
     }
 }

@@ -1,14 +1,17 @@
 package expression;
+
+import expression.exceptions.EvaluatingException;
+
 /**
  * @author Georgiy Korneev (kgeorgiy@kgeorgiy.info)
  */
 public class DoubleExpressionTest extends ExpressionTest {
-    public static void main(final String[] args) {
+    public static void main(final String[] args) throws EvaluatingException {
         new DoubleExpressionTest().run();
     }
 
     @Override
-    protected void test() {
+    protected void test() throws EvaluatingException {
         super.test();
 
         testExpression("10", new Const(10), x -> 10);

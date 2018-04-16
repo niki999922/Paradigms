@@ -3,6 +3,8 @@ package expression.parser;
 import expression.BaseTest;
 import expression.CommonExpression;
 import expression.TripleExpression;
+import expression.exceptions.EvaluatingException;
+import expression.exceptions.ExpressionParser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +65,7 @@ public class ParserTest extends BaseTest {
         );
     }
 
-    public static void main(final String[] args) {
+    public static void main(final String[] args) throws EvaluatingException {
         new ParserTest().run();
     }
 

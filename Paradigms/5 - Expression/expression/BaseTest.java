@@ -1,6 +1,7 @@
 package expression;
 
 import base.TestCounter;
+import expression.exceptions.EvaluatingException;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -84,12 +85,12 @@ public abstract class BaseTest {
         return random.nextInt(n);
     }
 
-    public void run() {
+    public void run() throws EvaluatingException {
         test();
         counter.printStatus(getClass());
     }
 
-    protected abstract void test();
+    protected abstract void test() throws EvaluatingException;
 
     @SafeVarargs
     public static <T> List<T> list(final T... items) {

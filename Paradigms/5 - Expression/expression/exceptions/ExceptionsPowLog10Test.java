@@ -37,7 +37,7 @@ public class ExceptionsPowLog10Test extends ExceptionsTest {
         return a <= 0 ? error(NEG_LOG) : (long) Math.log10(a);
     }
 
-    public static void main(final String[] args) {
+    public static void main(final String[] args) throws EvaluatingException {
         new ExceptionsPowLog10Test().run();
     }
 }

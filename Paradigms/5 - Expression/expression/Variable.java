@@ -5,9 +5,13 @@ package expression;
  */
 
 public class Variable implements CommonExpression {
-    private String name;
+    private char name;
 
     public Variable(String name) {
+        this.name = name.charAt(0);
+    }
+
+    public Variable(char name) {
         this.name = name;
     }
 
@@ -19,11 +23,10 @@ public class Variable implements CommonExpression {
         return value;
     }
 
-    public int evaluate(int x, int y, int z)
-    {
-        if (name.equals("x")) return x;
-        if (name.equals("y")) return y;
-        if (name.equals("z")) return z;
+    public int evaluate(int x, int y, int z) {
+        if (name == 'x') return x;
+        if (name == 'y') return y;
+        if (name == 'z') return z;
         return 0;
     }
 }

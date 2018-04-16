@@ -1,15 +1,17 @@
 package expression;
 
+import expression.exceptions.EvaluatingException;
+
 /**
  * @author Georgiy Korneev (kgeorgiy@kgeorgiy.info)
  */
 public class ExpressionTest extends BaseTest {
-    public static void main(final String[] args) {
+    public static void main(final String[] args) throws EvaluatingException {
         new ExpressionTest().run();
     }
 
     @Override
-    protected void test() {
+    protected void test() throws EvaluatingException {
         testExpression("10", new Const(10), x -> 10);
         testExpression("x", new Variable("x"), x -> x);
         testExpression("x+2", new Add(new Variable("x"), new Const(2)), x -> x + 2);

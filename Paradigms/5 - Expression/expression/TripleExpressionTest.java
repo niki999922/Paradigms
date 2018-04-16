@@ -1,15 +1,17 @@
 package expression;
 
+import expression.exceptions.EvaluatingException;
+
 /**
  * @author Georgiy Korneev (kgeorgiy@kgeorgiy.info)
  */
 public class TripleExpressionTest extends ExpressionTest {
-    public static void main(final String[] args) {
+    public static void main(final String[] args) throws EvaluatingException {
         new TripleExpressionTest().run();
     }
 
     @Override
-    protected void test() {
+    protected void test() throws EvaluatingException {
         super.test();
 
         testExpression("10", new Const(10), (x, y, z) -> 10);
@@ -30,7 +32,7 @@ public class TripleExpressionTest extends ExpressionTest {
         );
     }
 
-    private void testExpression(final String description, final TripleExpression actual, final TripleExpression expected) {
+    private void testExpression(final String description, final TripleExpression actual, final TripleExpression expected) throws EvaluatingException {
         System.out.println("Testing " + description);
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {

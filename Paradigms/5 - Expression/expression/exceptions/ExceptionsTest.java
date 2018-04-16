@@ -4,6 +4,7 @@ import expression.parser.Either;
 import expression.TripleExpression;
 import expression.Variable;
 import expression.parser.ParserTest;
+import expression.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,7 +50,7 @@ public class ExceptionsTest extends ParserTest {
             op("Constant overflow 2", Integer.MAX_VALUE + 1L + "")
     ));
 
-    public static void main(final String[] args) {
+    public static void main(final String[] args) throws EvaluatingException {
         new ExceptionsTest().run();
     }
 
@@ -65,11 +66,11 @@ public class ExceptionsTest extends ParserTest {
     }
 
     protected void testOverflow() {
-        //testOverflow((a, b) -> a + b, "+", new CheckedAdd(VX, VY));
-        //testOverflow((a, b) -> a - b, "-", new CheckedSubtract(VX, VY));
-        //testOverflow((a, b) -> a * b, "*", new CheckedMultiply(VX, VY));
-        //testOverflow((a, b) -> b == 0 ? Long.MAX_VALUE : a / b, "/", new CheckedDivide(VX, VY));
-        //testOverflow((a, b) -> -b, "<- ignore first argument, unary -", new CheckedNegate(VY));
+        testOverflow((a, b) -> a + b, "+", new CheckedAdd(VX, VY));
+        testOverflow((a, b) -> a - b, "-", new CheckedSubtract(VX, VY));
+        testOverflow((a, b) -> a * b, "*", new CheckedMultiply(VX, VY));
+        testOverflow((a, b) -> b == 0 ? Long.MAX_VALUE : a / b, "/", new CheckedDivide(VX, VY));
+        testOverflow((a, b) -> -b, "<- ignore first argument, unary -", new CheckedNegate(VY));
     }
 
     protected void testOverflow(final LongBinaryOperator f, final String op, final TripleExpression expression) {
