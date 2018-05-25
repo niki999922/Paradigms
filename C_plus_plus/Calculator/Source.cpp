@@ -52,7 +52,7 @@ void action(char c)
 int main() {
     string example;
 	//std::ifstream cin("input.txt");
-	getline(cin,example);
+	getline(cin, example);
 	if (example.length() == 0) 
 	{
 		cout << "Expression not found." << endl;
